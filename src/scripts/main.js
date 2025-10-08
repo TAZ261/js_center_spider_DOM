@@ -10,6 +10,21 @@ function positionSpider() {
     return;
   }
 
+  // Ensure correct positioning context:
+  // - wall should be positioned (e.g., relative)
+  // - spider should be positioned (e.g., absolute)
+  const wallCS = window.getComputedStyle(wall);
+  const spiderCS = window.getComputedStyle(spider);
+
+  if (wallCS.position === 'static') {
+    wall.style.position = 'relative';
+  }
+
+  if (spiderCS.position === 'static') {
+    spider.style.position = 'absolute';
+  }
+
+  // Measure after ensuring positioning so measurements reflect final layout.
   const spiderWidth = spider.offsetWidth;
   const spiderHeight = spider.offsetHeight;
 
